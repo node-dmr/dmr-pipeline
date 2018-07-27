@@ -1,6 +1,6 @@
 {
   "name": "dmr-pipeline",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "discription": "Utils for node-dmr",
   "scripts": {
     "test": "mocha -t 3000",
