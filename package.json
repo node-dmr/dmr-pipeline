@@ -1,0 +1,33 @@
+{
+  "name": "dmr-pipeline",
+  "version": "0.0.1",
+  "discription": "Utils for node-dmr",
+  "scripts": {
+    "test": "mocha -t 3000",
+    "lint": "eslint src test",
+    "cover": "istanbul cover node_modules/mocha/bin/_mocha",
+    "coveralls": "npm run cover -- --report lcovonly && cat ./coverage/lcov.info | coveralls"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/node-dmr/dmr-pipeline"
+  },
+  "bugs": {
+    "url": "https://github.com/node-dmr/dmr-pipeline/issues"
+  },
+  "homepage": "https://github.com/node-dmr/dmr/blob/master/README.md",
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "coveralls": "^3.0.2",
+    "eslint": "^5.2.0",
+    "istanbul": "^0.4.5",
+    "mocha": "^5.2.0"
+  },
+  "dependencies": {},
+  "engines": {
+    "node": ">= 6.0.x"
+  },
+  "main": "./src/index.js",
+  "license": "MIT",
+  "author": "qiansc"
+}
