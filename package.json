@@ -3,9 +3,10 @@
   "version": "0.0.2",
   "discription": "Utils for node-dmr",
   "scripts": {
-    "test": "mocha -t 3000",
-    "lint": "eslint src test",
-    "cover": "istanbul cover node_modules/mocha/bin/_mocha",
+    "test": "mocha --require ts-node/register --require source-map-support/register -t 3000 --recursive",
+    "lint": "tslint src/* test/*",
+    "doc": "gulp doc",
+    "cover": "nyc node_modules/mocha/bin/_mocha --require  ts-node/register --require source-map-support/register -t 3000 --recursive test/*.ts",
     "coveralls": "npm run cover -- --report lcovonly && cat ./coverage/lcov.info | coveralls"
   },
   "repository": {
@@ -15,19 +16,50 @@
   "bugs": {
     "url": "https://github.com/node-dmr/dmr-pipeline/issues"
   },
-  "homepage": "https://github.com/node-dmr/dmr/blob/master/README.md",
+  "homepage": "https://github.com/node-dmr/dmr",
   "devDependencies": {
+    "@types/chai": "^4.1.4",
+    "@types/mocha": "^5.2.5",
+    "@types/node": "^10.9.4",
     "chai": "^4.1.2",
     "coveralls": "^3.0.2",
-    "eslint": "^5.2.0",
+    "findup-sync": "^2.0.0",
+    "gulp": "^3.9.1",
+    "gulp-typedoc": "^2.2.0",
+    "gulp-typescript": "^5.0.0-alpha.3",
+    "gulp-util": "^3.0.8",
     "istanbul": "^0.4.5",
-    "mocha": "^5.2.0"
+    "jsdoc-to-markdown": "^4.0.1",
+    "mocha": "^5.2.0",
+    "source-map-support": "^0.5.9",
+    "ts-node": "^7.0.1",
+    "tslint": "^5.11.0",
+    "typedoc": "^0.12.0",
+    "typedoc-plugin-markdown": "^1.1.15",
+    "typescript": "^3.0.3"
   },
   "dependencies": {},
   "engines": {
     "node": ">= 6.0.x"
   },
-  "main": "./src/index.js",
+  "main": "build/src/index.js",
+  "types": "build/src/index.d.ts",
   "license": "MIT",
-  "author": "qiansc"
+  "author": "qiansc",
+  "nyc": {
+    "extension": [
+      ".ts",
+      ".tsx"
+    ],
+    "include": [
+      "src/**/*.ts"
+    ],
+    "exclude": [
+      "**/*.d.ts"
+    ],
+    "reporter": [
+      "html"
+    ],
+    "all": true
+  }
 }
