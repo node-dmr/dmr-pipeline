@@ -4,7 +4,7 @@
   "discription": "Utils for node-dmr",
   "scripts": {
     "test": "mocha --require ts-node/register --require source-map-support/register -t 3000 --recursive",
-    "lint": "tslint src/* test/*",
+    "lint": "tslint",
     "doc": "gulp doc",
     "cover": "nyc node_modules/mocha/bin/_mocha --require  ts-node/register --require source-map-support/register -t 3000 --recursive test/*.ts",
     "coveralls": "npm run cover -- --report lcovonly && cat ./coverage/lcov.info | coveralls"
