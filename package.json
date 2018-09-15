@@ -3,10 +3,10 @@
   "version": "0.0.2",
   "discription": "Utils for node-dmr",
   "scripts": {
-    "test": "mocha --require ts-node/register --require source-map-support/register -t 3000 --recursive",
+    "test": "node_modules/mocha/bin/_mocha --require ts-node/register --require source-map-support/register -t 3000 --recursive",
     "lint": "tslint",
     "doc": "gulp doc",
-    "cover": "nyc node_modules/mocha/bin/_mocha --require  ts-node/register --require source-map-support/register -t 3000 --recursive test/*.ts",
+    "cover": "node_modules/nyc/bin/nyc.js npm run test test/*.ts",
     "coveralls": "npm run cover -- --report lcovonly && cat ./coverage/lcov.info | coveralls"
   },
   "repository": {
@@ -31,6 +31,7 @@
     "istanbul": "^0.4.5",
     "jsdoc-to-markdown": "^4.0.1",
     "mocha": "^5.2.0",
+    "nyc": "^13.0.1",
     "source-map-support": "^0.5.9",
     "ts-node": "^7.0.1",
     "tslint": "^5.11.0",
