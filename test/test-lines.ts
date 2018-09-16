@@ -2,7 +2,7 @@
  * @Author: qiansc
  * @Date: 2018-09-15 23:07:54
  * @Last Modified by: qiansc
- * @Last Modified time: 2018-09-16 04:11:31
+ * @Last Modified time: 2018-09-16 15:16:09
  */
 // import {expect} from 'chai';
 import fs = require("fs");
@@ -49,7 +49,7 @@ describe("Line Transform Test", () =>  {
     });
     let lines = 0;
     const out = reader.pipe(new LineTransform({
-      "line-break": "\n",
+      lineBreak: "\n",
     })).on("data", (chunk) => {
       lines ++ ;
       console.log(lines, chunk.toString());

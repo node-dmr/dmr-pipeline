@@ -2,23 +2,23 @@
  * @Author: qiansc
  * @Date: 2018-04-13 16:36:33
  * @Last Modified by: qiansc
- * @Last Modified time: 2018-09-15 23:26:09
+ * @Last Modified time: 2018-09-16 18:00:00
  */
 import {Transform, TransformCallback, TransformOptions} from "./transform";
 /**
  * @interface
- * @param string line-break
+ * @param string lineBreak
  */
 export interface LineTransformOptions extends TransformOptions {
-  "line-break"?: string;
+  lineBreak?: string;
 }
 
   /**
    * @param LineTransformCondig config
-   * @param string config["line-break"] Default: \n
+   * @param string config.lineBreak default: \n
    * @example
    *
-   * fileStream.pipe(new LineTransform())
+   * fileStream.pipe(new LineTransform())p
    *  .on('data', line => console.log(line));
    */
 export default class LineTransform extends Transform {
@@ -27,7 +27,7 @@ export default class LineTransform extends Transform {
 
     constructor(config: LineTransformOptions = {}) {
         super(config);
-        this.breaker = config["line-break"] || "\n";
+        this.breaker = config.lineBreak || "\n";
     }
     public _transform(buffer: Buffer, encoding: string, callback: () => void) {
         const breaker = this.breaker;
@@ -50,6 +50,7 @@ export default class LineTransform extends Transform {
         }
         callback();
     }
+
     public _flush(callback: TransformCallback) {
         if (this.prevBuffer.length > 0) {
           this.push(this.prevBuffer);

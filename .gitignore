@@ -16,7 +16,7 @@ dist/
 node_modules/
 test-reports/
 coverage/
+.nyc_output
 
 # develop
-.nyc_output
 mydev*
