@@ -4,36 +4,40 @@
  * @Last Modified by: qiansc
  * @Last Modified time: 2018-09-15 23:26:09
  */
-import {Transform, TransformConfig} from './transform';
+import {Transform, TransformCallback, TransformOptions} from "./transform";
 /**
  * @interface
  * @param string line-break
  */
-export interface LineTransformCondig extends TransformConfig {
-  'line-break': string
+export interface LineTransformOptions extends TransformOptions {
+  "line-break"?: string;
 }
 
-/**
- * @param LineTransformCondig config
- * @param string config.line-break
- */
-export default class LineTransform extends Transform{
+  /**
+   * @param LineTransformCondig config
+   * @param string config["line-break"] Default: \n
+   * @example
+   *
+   * fileStream.pipe(new LineTransform())
+   *  .on('data', line => console.log(line));
+   */
+export default class LineTransform extends Transform {
     private prevBuffer = new Buffer(0);
     private breaker: string;
 
-    constructor (config: LineTransformCondig = {'line-break': '\n'}) {
+    constructor(config: LineTransformOptions = {}) {
         super(config);
-        this.breaker = config['line-break'];
+        this.breaker = config["line-break"] || "\n";
     }
-    _transform(buffer:Buffer, encoding:string, callback: Function){
-        let breaker = this.breaker;
-        let from = 0,
-            to = 0;
-        while((to = buffer.indexOf(breaker, from)) >= 0) {
-            var lineBuffer = buffer.slice(from, to);
+    public _transform(buffer: Buffer, encoding: string, callback: () => void) {
+        const breaker = this.breaker;
+        let from = 0;
+        let to: number = 0;
+        while ((to = buffer.indexOf(breaker, from)) >= 0) {
+            let lineBuffer = buffer.slice(from, to);
             if (this.prevBuffer.length) {
                 // 前次chunk，存在剩余buffer进行拼接
-                var lineBuffer = Buffer.concat([this.prevBuffer, lineBuffer],to - from + this.prevBuffer.length);
+                lineBuffer = Buffer.concat([this.prevBuffer, lineBuffer], to - from + this.prevBuffer.length);
                 this.prevBuffer = new Buffer(0);
             }
             this.push(lineBuffer);
@@ -45,14 +49,12 @@ export default class LineTransform extends Transform{
                 buffer.length - from + this.prevBuffer.length);
         }
         callback();
-    };
-    _flush(callback: Function){
-        if (this.prevBuffer) {
-            if (this.prevBuffer.length > 0){
-                this.push(this.prevBuffer);
-            }
-            this.prevBuffer = new Buffer(0);
+    }
+    public _flush(callback: TransformCallback) {
+        if (this.prevBuffer.length > 0) {
+          this.push(this.prevBuffer);
         }
+        this.prevBuffer = new Buffer(0);
         callback();
     }
 }

@@ -7,7 +7,9 @@
   },
   "rules": {
     "no-console": false,
-      // "interface-name": false,
+    "interface-name": false,
+    "no-empty-interface": false,
+    "no-conditional-assignment": false
       // "trailing-comma": false,
       // "max-classes-per-file": false,
       // "ordered-imports": false,
@@ -26,7 +28,6 @@
       // "no-internal-module": false,
       // "unified-signatures": false,
       // "ban-types": false,
-      // "no-conditional-assignment": false,
       // "radix": false
   },
   "rulesDirectory": []

@@ -21,6 +21,7 @@ gulp.task("doc", function() {
             module: "commonjs",
             target: "es2015",
             out: "docs/",
+            // json: "docs/file.json",
             name: "DMR Pipeline",
             hideGenerator: true,
             version: false,

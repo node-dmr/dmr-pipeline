@@ -2,26 +2,28 @@
  * @Author: qiansc
  * @Date: 2018-04-10 17:02:27
  * @Last Modified by: qiansc
- * @Last Modified time: 2018-09-16 02:44:22
+ * @Last Modified time: 2018-09-16 10:44:01
  */
 "use strict";
 
 import Stream = require("stream");
 
 export class Transform extends Stream.Transform {
-    protected config: TransformConfig;
+    protected options: TransformOptions;
     /**
      * @param TransformConfig config
      */
-    constructor(config?: TransformConfig) {
-      super(config);
-      this.config = config || {};
+    constructor(options?: TransformOptions) {
+      super(options);
+      this.options = options || {};
     }
 }
 
 /**
  * @interface
  */
-export interface TransformConfig {
+export interface TransformOptions extends Stream.TransformOptions {
 
 }
+
+export type TransformCallback = (error?: Error, data?: any) => void;
