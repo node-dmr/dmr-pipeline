@@ -2,7 +2,7 @@
  * @Author: qiansc
  * @Date: 2018-04-13 16:36:33
  * @Last Modified by: qiansc
- * @Last Modified time: 2018-09-16 18:00:00
+ * @Last Modified time: 2018-09-16 19:21:45
  */
 import {Transform, TransformCallback, TransformOptions} from "./transform";
 /**
@@ -21,6 +21,7 @@ export interface LineTransformOptions extends TransformOptions {
    * fileStream.pipe(new LineTransform())p
    *  .on('data', line => console.log(line));
    */
+  ss
 export default class LineTransform extends Transform {
     private prevBuffer = new Buffer(0);
     private breaker: string;
