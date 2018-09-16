@@ -1,6 +1,6 @@
 {
   "name": "dmr-pipeline",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "discription": "Utils for node-dmr",
   "scripts": {
     "test": "node_modules/mocha/bin/_mocha --require ts-node/register --require source-map-support/register -t 3000 --recursive",
