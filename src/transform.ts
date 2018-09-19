@@ -2,10 +2,8 @@
  * @Author: qiansc
  * @Date: 2018-04-10 17:02:27
  * @Last Modified by: qiansc
- * @Last Modified time: 2018-09-16 10:44:01
+ * @Last Modified time: 2018-09-16 20:58:52
  */
-"use strict";
-
 import Stream = require("stream");
 
 export class Transform extends Stream.Transform {
